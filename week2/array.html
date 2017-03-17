@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <button onclick = "AddA()" id = "A">A</button>
+
+    <button onclick = "AddB()" id = "B">B</button>
+
+    <button onclick = "Add()">Add</button>
+
+    <button onclick = "Average()">Average</button>
+
+    <script>
+    let a = [];
+
+    let b = [];
+
+    function AddA(){
+      let rand = Math.floor(Math.random() * 20);
+
+      a.push(rand);
+      console.log(rand);
+
+    }
+
+    function AddB(){
+      let rand = Math.floor(Math.random() * 20);
+
+      b.push(rand);
+      console.log(rand);
+
+    }
+let totala = 0;
+let totalb = 0;
+
+let average = 0;
+let total = 0;
+
+    function Add(){
+      let x = 0;
+
+      while (x < b.length){
+        totalb += b[x]
+        x++;
+      }
+
+      while (x < a.length){
+        totala += a[x]
+        x++;
+      }
+      alert(totala);
+      alert(totalb);
+    }
+
+    let Average = () => {
+      let x = 0;
+
+      while (x < b.length){
+        totalb = b[x] + totalb
+        x++;
+      }
+
+      while (x < a.length){
+        totala = a[x] +totala
+        x++;
+      }
+
+      total = totala + totalb
+
+      average = a.length + b.length
+      average = total/average
+
+      alert(average);
+
+
+    }
+window.onload
+    </script>
+  </body>
+</html>

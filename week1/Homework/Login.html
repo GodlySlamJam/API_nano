@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+    .username{
+      height:50px;
+      width:100px;
+    }
+
+    .password{
+      height:50px;
+      width:100px;
+    }
+
+    .button{
+      height:50px;
+      width:100px;
+      background-color: red;
+    }
+
+
+
+    </style>
+
+  </head>
+  <body>
+    <p>Username
+    <input class = "username"></input>
+  </p>
+
+  <p>Password
+  <input class = "password"></input>
+</p>
+
+<p class = "error"></p>
+
+<button onclick = "create()" class = "button">Create</button>
+<button onclick = "login()" class = "button">Login</button>
+    <script>
+
+    var user = document.getElementsByClassName("username");
+    user = user.value
+
+    var pass = document.getElementsByClassName("password");
+    pass = pass.value
+
+    var error = document.getElementsByClassName("error");
+    error = error.value
+
+    var storage = [];
+
+    function login(){
+      let check = [user, pass]
+      let x = 0;
+      let y = 0;
+
+      while (x < storage.length){
+
+        if(storage[x][y] == check[y]){
+          y++;
+          if(storage[x][y] == check[y]){
+            window.location = "https://www.youtube.com/channel/UCmED3lzXGzEMwjvY2aeMr0A"
+
+          }else{
+            y = 0;
+          }
+          x++;
+
+        }
+        x++;
+
+      }
+      error = "NO"
+
+    }
+
+    function create(){
+      let temp = [user, pass];
+      storage.push(temp);
+
+
+      user = "";
+      pass = "";
+
+    }
+
+window.onload
+    </script>
+
+  </body>
+</html>
