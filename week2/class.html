@@ -16,12 +16,14 @@
     </tr>
 
     <script>
+var names = ["Tim", "Timmy", "Timy", "Timm", "Timantha", "Timbo", "Timmey", "Timmie", "Timey", "Timie", "Timmbo", "Timi", "Timmi", "Timei", "Timmei"];
 var students = 15;
 var homework = 5;
-var exam = 2;
+var quiz = 3;
+var exams = 2;
 
 $("BUTTON").click(() =>{
-  document.write("<table><tr> <th>Name</th> <th>Homework</th> <th>Exam</th> <th>Average</th> <th>GPA</th> </tr>");
+  document.write("<table><tr><th>Name</th><th>Homework</th><th>Quiz</th><th>Exam</th><th>GPA</th></tr>");
   var y = 0;
 
 while (students > y){
@@ -32,16 +34,18 @@ var rand = 0;
 var respons;
   $.get("https://randomuser.me/api/",
     (response) => {
-      var respons = JSON.stringify(response);
+      JSON.stringify(response);
 
-       var respons = response["results"][0]["name"]["title"];
+       var respons = response["results"][0]["login"]["username"];
     })
 
 var name = respons;
 var haverage = 0;
 var eaverage = 0;
+var qaverage = 0;
 var average = 0;
 var hgrades = [];
+var qgrades = [];
 var egrades = [];
 
 
@@ -65,17 +69,31 @@ var egrades = [];
 
   x = 0;
   var w = 0;
-  while(x < exam && w < 2){
+  while(x < quiz && w < 2){
       rand = Math.floor(Math.random() * 3);
 
     if(rand >= 1){
       rand = Math.floor(Math.random() * 100);
-      egrades.push(rand);
+      qgrades.push(rand);
       x++;
     }
     w++;
   }
 
+  x = 0;
+  w = 0;
+  while(x < exams && w < 2){
+      rand = Math.floor(Math.random() * 2);
+
+    if(rand == 1){
+      rand = Math.floor(Math.random() * 100);
+      egrades.push(rand);
+      x++;
+    }
+    if (egrades.length < 1 && x < 2){
+      x = x - 1;
+    }
+  }
 
   x = 0;
   let temph = hgrades;
@@ -88,19 +106,21 @@ var egrades = [];
   haverage = tempn/hgrades.length;
   console.log(hgrades[0]);
 
+  x = 0;
+  let tempq = qgrades;
+  while(x < qgrades.length){
+    tempn = tempn + qgrades[x];
+    x++;
+  }
+  qaverage = qaverage/qgrades.length;
 
   x = 0;
   let tempe = egrades;
-  tempn = 0;
-  if( egrades.length == 0){
-    rand = Math.floor(Math.random() * 100);
-    egrades.push(rand);
-  }
   while(x < egrades.length){
     tempn = tempn + egrades[x];
     x++;
   }
-  eaverage = tempn/egrades.length;
+  eaverage = eaverage/egrades.length;
 
   x = 0;
   let tq = 0;
@@ -111,7 +131,12 @@ var egrades = [];
     x++;
   }
 
-
+  x = 0;
+  while(x < tempq.length){
+    tq = tq + tempq[x];
+    x++;
+  }
+  tq = tq * 2;
 
   x = 0;
   while(x < tempe.length){
@@ -120,45 +145,14 @@ var egrades = [];
   }
   te = te * 3;
 
-  let temp = temph.length + (tempe.length * 3);
-  average = te + th;
+  let temp = temph.length + (tempe.length * 2) + (tempq.length * 3);
+  average = te + tq + th;
   average = average/temp;
 
-  if(average > 100){
-    average = 100;
-  }
-
-let letter;
-let number;
-
-  if(average > 90){
-    letter = "A or ";
-    number = 4;
-
-  }else if(average > 79 && average < 90){
-    letter = "B or ";
-    number = 3;
-
-  }else if(average > 69 && average < 80){
-    letter = "C or ";
-    number = 2;
-
-  }else if(average > 59 && average < 70){
-    letter = "D or ";
-    number = 1;
-
-  }else if(average < 60){
-    letter = "F or ";
-    number = 0;
-
-  }
-
-  array.push({"Name": name, "Homework": haverage, "Exam": eaverage, "GPA": average, "Letter": letter, "Number": number});
+  array.push({"Name": name, "Homework": haverage, "Quiz": qaverage, "Exam": eaverage, "GPA": average});
 
 
-
-
-  document.write("<tr><td>" + name + "</td><td>" + haverage + "</td><td>" + eaverage + "</td><td>" + average + " </td><td>" + letter +  number + "</td></tr>");
+  document.write("<tr><td>" + name + " </td><td>" + haverage + " </td><td>" + qaverage + " </td><td>" + eaverage + " </td><td>" + average + " </td></tr>");
 
   y++;
   }

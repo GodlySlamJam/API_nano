@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <style>
+    .post{
+      background-color: #CDE8EB;
+      position: absolute;
+      border: solid;
+      border-color: black;
+      border-width: 3px;
+      padding: 10px;
+    }
+
+    .name{
+      font-family: orbitron;
+    }
+
+    .recent{
+      width:100%;
+      height: 100px;
+      position: relative;
+    }
+
+    </style>
+  </head>
+  <body>
+
+    <div class = "recent"></div>
+
+
+
+<script>
+let x = 0;
+
+
+
+let username;
+let profile;
+let image;
+let place;
+
+$.get("https://randomuser.me/api/",
+(response) =>{
+  username = response.results[0].name.first;
+
+  place = response.results[0].location.state + ", " + response.results[0].location.city + ", " + response.results[0].location.street;
+})
+
+
+image = "https://unsplash.it/400/200?random&rand=${" + x + "}";
+profile = "https://unsplash.it/20/?blur?random&rand=${" + x + "}";
+
+setTimeout(function(){
+$("div").append("<div class = 'post'> <div> <p class = 'name'><h3> " + username + "</h3><img src = " + profile + "></p>  </div> <img src = " + image + ">  <p>"+ place +"</p></div>");
+}, 3000);
+</script>
+
+  </body>
+</html>
