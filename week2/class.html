@@ -2,137 +2,9 @@
 <html>
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script>
-    var names = ["Tim", "Timmy", "Timy", "Timm", "Timantha", "Timbo", "Timmey", "Timmie", "Timey", "Timie", "Timmbo", "Timi", "Timmi", "Timei", "Timmei"];
-    var students = 15;
-    var homework = 5;
-    var quiz = 3;
-    var exams = 2;
-
-
-  function table(){
-
-    var array = [];
-    var x = 0;
-    var rand = 0;
-    var name = "Tim";
-    var haverage = 0;
-    var eaverage = 0;
-    var qaverage = 0;
-    var average = 0;
-    var hgrades = [];
-    var qgrades = [];
-    var egrades = [];
-
-
-      rand = Math.floor(Math.random * 14);
-      name = names[rand];
-
-      while (x < homework){
-      rand = Math.floor(Math.random * 5);
-
-      if(rand >= 3){
-
-      rand = Math.floor(Math.random * 100);
-      rand = parseInt(rand);
-      hgrades.push(rand);
-      x++;
-
-    }
-    if (hgrades.length < 3){
-      x = x - 1;
-      }
-    }
-
-      x = 0;
-      while(x < quiz){
-        rand = Math.floor(Math.random * 3);
-
-        if(rand >= 1){
-        rand = Math.floor(Math.random * 100);
-        qgrades.push(rand);
-        x++;
-        }
-      }
-
-      x = 0;
-      while(x < exams){
-        rand = Math.floor(Math.random * 2);
-
-        if(rand == 1){
-        rand = Math.floor(Math.random * 100);
-        egrades.push(rand);
-        x++;
-        }
-        if (qgrades.length < 1){
-          x = x - 1;
-          }
-      }
-
-      x = 0;
-      let temph = hgrades;
-      let tempn = 0;
-      while(x < hgrades.length){
-        tempn = tempn + hgrades[x];
-        x++;
-
-      }
-      haverage = tempn/hgrades.length;
-      console.log(hgrades[0]);
-
-      x = 0;
-      let tempq = qgrades;
-      while(x < qgrades.length){
-        tempn = tempn + qgrades[x];
-        x++;
-      }
-      qaverage = qaverage/qgrades.length;
-
-      x = 0;
-      let tempe = egrades;
-      while(x < egrades.length){
-        tempn = tempn + egrades[x];
-        x++;
-      }
-      eaverage = eaverage/egrades.length;
-
-      x = 0;
-      let tq = 0;
-      let te = 0;
-      let th = 0;
-      while(x < temph.length){
-        th = th + temph[x];
-        x++;
-      }
-
-      x = 0;
-      while(x < tempq.length){
-        tq = tq + tempq[x];
-        x++;
-      }
-      tq = tq * 2;
-
-      x = 0;
-      while(x < tempe.length){
-        te = te + tempe[x];
-        x++;
-      }
-      te = te * 3;
-
-      let temp = temph.length + (tempe.length * 2) + (tempq.length * 3);
-      average = te + tq + th;
-      average = average/temp;
-
-      array.push({"Name": name, "Homework": haverage, "Quiz": qaverage, "Exam": eaverage, "GPA": average});
-
-      document.write("<tr><td>" + name + "</td></tr>");
-
-
-}
-window.onload;
-    </script>
-  </head>
-  <body>
+    <body>
+  <script>
+    
     <button onclick = "table();">Sample</button>
 <p></p>
     <tr>
@@ -144,5 +16,107 @@ window.onload;
     </tr>
 
 
+
+    if (hgrades.length < 3 && x < 5){
+    x = x - 1;
+    x++;
+  }
+}
+
+  x = 0;
+  var w = 0;
+  while(x < quiz && w < 2){
+      rand = Math.floor(Math.random() * 3);
+
+    if(rand >= 1){
+      rand = Math.floor(Math.random() * 100);
+      qgrades.push(rand);
+      x++;
+    }
+    w++;
+  }
+
+  x = 0;
+  w = 0;
+  while(x < exams && w < 2){
+      rand = Math.floor(Math.random() * 2);
+
+    if(rand == 1){
+      rand = Math.floor(Math.random() * 100);
+      egrades.push(rand);
+      x++;
+    }
+    if (egrades.length < 1 && x < 2){
+      x = x - 1;
+    }
+  }
+
+  x = 0;
+  let temph = hgrades;
+  let tempn = 0;
+  while(x < hgrades.length){
+    tempn = tempn + hgrades[x];
+    x++;
+
+  }
+  haverage = tempn/hgrades.length;
+  console.log(hgrades[0]);
+
+  x = 0;
+  let tempq = qgrades;
+  while(x < qgrades.length){
+    tempn = tempn + qgrades[x];
+    x++;
+  }
+  qaverage = qaverage/qgrades.length;
+
+  x = 0;
+  let tempe = egrades;
+  while(x < egrades.length){
+    tempn = tempn + egrades[x];
+    x++;
+  }
+  eaverage = eaverage/egrades.length;
+
+  x = 0;
+  let tq = 0;
+  let te = 0;
+  let th = 0;
+  while(x < temph.length){
+    th = th + temph[x];
+    x++;
+  }
+
+  x = 0;
+  while(x < tempq.length){
+    tq = tq + tempq[x];
+    x++;
+  }
+  tq = tq * 2;
+
+  x = 0;
+  while(x < tempe.length){
+    te = te + tempe[x];
+    x++;
+  }
+  te = te * 3;
+
+  let temp = temph.length + (tempe.length * 2) + (tempq.length * 3);
+  average = te + tq + th;
+  average = average/temp;
+
+  array.push({"Name": name, "Homework": haverage, "Quiz": qaverage, "Exam": eaverage, "GPA": average});
+
+
+  document.write("<tr><td>" + name + " </td><td>" + haverage + " </td><td>" + qaverage + " </td><td>" + eaverage + " </td><td>" + average + " </td></tr>");
+
+  y++;
+  }
+  document.write("</table>");
+});
+window.onload;
+
+
+</script>
   </body>
 </html>
