@@ -4,12 +4,127 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   </head>
   <body>
+ Homework5
 
     <script>
     $.get("",
   (card) =>{
     
   })
+=======
+    <div>
+
+  </div>
+
+  <div id = "player"></div>
+    <script>
+    let user = prompt("Name");
+    let usernum = 1;
+    let dealer;
+    let deck;
+    let piles;
+    let y = 0;
+    let z = 3;
+
+    $.get("https://deckofcardsapi.com/api/deck/new/",
+  (response) =>{
+
+    setTimeout(function(){
+
+    deck = response;
+
+setTimeout(function(){
+    $.get("https://deckofcardsapi.com/api/deck/" + deck.deck_id + "/shuffle/",
+  (card) =>{
+
+
+    deck = card;
+    deck.piles = {player:[]},{computer:[]};
+    let x = 0;
+    piles = [];
+    while(x < usernum){
+      piles.push([]);
+      x++;
+}
+
+    $.get("https://deckofcardsapi.com/api/deck/" + deck.deck_id + "/draw/?count=2",
+  (draw) =>{
+
+    setTimeout(function(){
+    deck = draw;
+      deck.piles.player.push(deck.cards[0], deck.cards[1]);
+
+
+      $.get("https://deckofcardsapi.com/api/deck/" + deck.deck_id + "/draw/?count=2",
+    (draws) =>{
+
+      setTimeout(function(){
+      deck = draws;
+
+
+        deck.piles.computer.push(deck.cards[0], deck.cards[1]);
+        $("div").append("<button id ='hit'>Hit</button> <button class = 'stand'>Stand</button>");
+      }, 1000);
+    }, 1000);
+    }, 1000);
+})
+})
+})
+}, 1000);
+
+let temp;
+
+$("#hit").click(() => {
+  $.get("https://deckofcardsapi.com/api/deck/" + deck.deck_id + "/draw/?count=" + z,
+(draw) =>{
+  deck.piles.player.push(deck.cards[z]);
+  console.log(deck);
+  x = 0;
+  z++;
+
+  while(x < deck.piles.player.length){
+
+setTimeout(function(){
+    $("#player").append("<img src= '" + deck.piles.player[x].image + "'>");
+
+    console.log(piles[0][x]["value"]);
+
+    if(deck.piles.player[x]["value"] == "KING" || deck.piles.player[x]["value"] == "QUEEN" || deck.piles.player[x]["value"] == "JACK"){
+    temp += 10;
+
+  }else if(piles[0][x]["value"] == "ACE"){
+    let option = prompt("11 or 1 current value " + temp);
+
+    if(option == "11"){
+      temp += 11;
+
+    }else if(option == "1"){
+      temp += 1;
+
+    }
+
+  }
+
+  while(y < 0){
+
+    if(piles[0][y]["value"] == deck.cards[0]){
+      temp = array[0].length - 1;
+    piles[0].splice(temp, 1);
+
+  }
+  y++;
+  }
+  x++;
+  },2000)
+}
+})
+})
+})
+
+
+
+
+
     </script>
   </body>
 </html>
