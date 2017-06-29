@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  </head>
+  <body>
+
+    <script>
+    let v = JSON.parse(`{
+  "results":
+  [
+    {
+      "gender": "male",
+      "name": {
+        "title": "mr",
+        "first": "eren",
+        "last": "wassing"
+      },
+      "location": {
+        "street": "6185 kapelstraat",
+        "city": "zuidplas",
+        "state": "limburg",
+        "postcode": 19565
+      },
+      "email": "eren.wassing@example.com",
+      "login": {
+        "username": "blackpeacock832",
+        "password": "escape",
+        "salt": "hz2YXPec",
+        "md5": "118e4bd7d96850b7c34937374e75fffd",
+        "sha1": "1c9967089cff580de83d30462e457967f89da5d3",
+        "sha256": "493915598e3923acef234d83511032f1ee085bafaf56c7f4939f3223fbb6efb9"
+      },
+      "dob": "1965-09-10 14:47:17",
+      "registered": "2007-03-23 17:36:16",
+      "phone": "(687)-411-4072",
+      "cell": "(626)-888-1173",
+      "id": {
+        "name": "BSN",
+        "value": "85426242"
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/men/92.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/92.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/92.jpg"
+      },
+      "nat": "NL"
+    }
+  ],
+  "info": {
+    "seed": "6a14170e64ef32ed",
+    "results": 1,
+    "page": 1,
+    "version": "1.1"
+  }
+}`);
+    alert(v["results"][0]["login"]["username"]);
+
+    </script>
+  </body>
+</html>
