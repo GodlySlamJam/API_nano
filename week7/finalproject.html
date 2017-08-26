@@ -1,0 +1,149 @@
+<html>
+  <head>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <meta charset="utf-8">
+        <style>
+        .settings{
+          width:100%;
+          height:12%;
+          background-color: #ccffff;
+          position:absolute;
+          margin:0px;
+        }
+
+        .data{
+          overflow-y:scroll;
+          top:13%;
+          width:100%;
+          height: 88%;
+          position:absolute;
+          display: inline-block;
+          margin:0px;
+        }
+
+      </style>
+      </head>
+      <body>
+
+        <div class = "settings">
+          <center>
+        <table>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Place</th>
+            <th>Day</th>
+            <th>Month</th>
+            <th>Hour</th>
+            <th>Minute</th>
+
+          </tr>
+        <tr>
+          <td><input id = "title"></input></td>
+          <td><input id = "desc"></input></td>
+          <td><input id = "place"></input ></td>
+          <td><input id = "day"></input></td>
+          <td><input id = "month"></input></td>
+          <td><input id = "hour"></input></td>
+          <td><input id = "minute"></input></td>
+        </tr>
+      </table>
+
+      <button class= "submit">Submit</button></center>
+      </div>
+
+    <table class = "data">
+  </table>
+
+
+        <script>
+        console.log("no");
+
+        $(".submit").click(()=>{
+          let title = $("#title").val();
+          let desc =$("#desc").val;
+          let minute =$("#minute").val();
+          let hour =$("#hour").val();
+          let place =$("#place").val();
+          let month =$("#month").val();
+          let day = $("#day").val();
+          send(title, desc, minute, hour, place, month, day)
+        })
+
+        function send(title, desc, minute, hour, place, month, day){
+
+
+          var days = document.getElementById("day");
+          days = days.value;
+          days = parseInt(days);
+
+          var months = document.getElementById("month");
+          months = months.value;
+
+          var hours = document.getElementById("hour");
+          hours = hours.value;
+
+          var minutes = document.getElementById("minute");
+          minutes = minutes.value;
+
+          console.log(days);
+          console.log($("#month").val());
+          console.log($("#hour").val());
+          console.log($("#minute").val());
+          console.log($("#desc").val());
+          console.log($("#place").val());
+          console.log($("#title").val());
+
+          if(days == false || months == false || minutes == false || hours == false || days > 31 || months > 12 || hours > 24 || minutes > 60){
+            alert("Make sure that inside of the day, minute, month, and hour collumn you only have a number in it.");
+
+          }else{
+      $.ajax({
+        type:'POST',
+        headers: {
+          "Phant-Private-Key": '12d5Mjnlx6TMXvZJMWln'
+        },
+        url: "https://data.sparkfun.com/input/XAjKp8WLblfKLXljKDEG.json",
+        method: 'POST',
+        dataType: 'json',
+        data: {
+          day: $('#day').val(),
+          month:$('#month').val(),
+          hour:$('#hour').val(),
+          minute:$('#minute').val(),
+          desc:$('#desc').val(),
+          place:$('#place').val(),
+          title:$('#title').val()
+        },
+        success: function(response) {
+          console.log("dgh");
+          schedule();
+        }
+      });
+    }
+      }
+
+      let schedule = () =>{
+        setTimeout(()=>{
+        $.get("https://data.sparkfun.com/output/XAjKp8WLblfKLXljKDEG.json",
+  (response) =>{
+    console.log(response);
+    $(".data").empty();
+      $(".data").append("<th>'Title'</th><th>'Description'</th>  <th>'Place'</th><th>'Day'</th><th>'Month'</th><th>'Hour'</th><th>'Minute'</th>")
+    for(let x = 0; x < response.length; x++){
+      console.log(response[0]);
+      $(".data").append("<tr><td>" + response[x].title + "</td><td>" + response[x].desc + "</td><td>" + response[x].place + "</td><td>" + response[x].month + "</td><td>" + response[x].day + "</td><td>" + response[x].hour + "</td><td>" + response[x].minute + "</td></tr>")
+
+    }
+
+
+  })
+  }, 200)
+      }
+
+      schedule();
+
+
+    </script>
+    </body>
+</html>
